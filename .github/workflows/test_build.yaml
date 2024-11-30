@@ -27,5 +27,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - run: yarn install
-      - run: yarn build
+      - name: Install dependencies
+        run: yarn install
+        working-directory: ./github-pages-app
+
+      - name: Build
+        run: yarn build
+        working-directory: ./github-pages-app
