@@ -3,7 +3,14 @@ import { join } from "path";
 
 const publicDirectory = join(process.cwd(), "public");
 
-export default function listFiles(name: string) {
-  const files = fs.readdirSync(join(publicDirectory, name));
+export const listBlogFolders = () => {
+  const files = fs.readdirSync(join(publicDirectory, "blog_media"));
+  return files.filter((file) =>
+    fs.statSync(join(publicDirectory, "blog_media", file)).isDirectory()
+  );
+};
+
+export function listBlogMedia(name: string) {
+  const files = fs.readdirSync(join(publicDirectory, "blog_media", name));
   return files;
 }

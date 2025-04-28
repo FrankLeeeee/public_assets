@@ -1,20 +1,20 @@
 import Link from "next/link";
-import listFiles from "../../api/utils";
+import { listBlogFolders } from "../../api/utils";
 
 export const getStaticProps = () => {
-  const files = listFiles("blog_media");
-  return { props: { files } };
+  const folders = listBlogFolders();
+  return { props: { folders } };
 };
 
-export default function BlogMedia({ files = [] }: { files: string[] }) {
+export default function BlogFolders({ folders = [] }: { folders: string[] }) {
   return (
     <>
       <h2>Blog Media</h2>
       <div>
         <ul>
-          {files.map((file) => (
-            <li key={file}>
-              <Link href={`/blog_media/${file}`}>{file}</Link>
+          {folders.map((folder) => (
+            <li key={folder}>
+              <Link href={`/blog_media/${folder}`}>{folder}</Link>
             </li>
           ))}
         </ul>
